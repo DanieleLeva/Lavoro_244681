@@ -1,0 +1,12 @@
+Tipologia,Incidenti,Morti
+Fermo,7,2
+Hovering,1,0
+In_avvicinamento,11,14
+In_fase_di_atterraggio,65,35
+In_fase_di_crociera,98,163
+In_fase_di_decollo,42,144
+In_fase_di_manovra,77,86
+In_fase_di_rullaggio,16,20
+In_fase_di_salita,9,15
+Veleggiamento,2,0
+Non_indicata,6,13
