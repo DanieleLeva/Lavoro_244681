@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://oop.polito.it/js/plotly-latest.min.js"></script>
+    <script src="https://oop.polito.it/js/jquery-3.2.1.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div id="scatter"></div>
+
+<script>
+    var _MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+    function dateDiffInDays(a, b) {
+        var utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+        var utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+
+        return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+    }
+
+    window.onload = function() {
+        Plotly.d3.json("movimenti.json", function (error, data) {
+            if (error) {
+                console.error("Impossibile caricare i dati: " + error);
+                return;
+            }
+            var medium;
+            var traces=[];
+            for( medium in data){
+                traces.push({
+                    name : medium,
+                    x : data[medium].date,
+                    y : data[medium].measure,
+                    type : "scatter",
+                    hoverinfo:"yx"
+                });
+            }
+
+
+            var layout = {
+                width: 900, height: 600,
+                title: "Movimenti complessivi di aeromobili 2013-2018",
+                yaxis: {title: "Movimenti"},
+                xaxis: {title: "Anno"},
+                showlegend: false,
+            };
+            Plotly.plot("scatter", traces, layout, {displayModeBar: false});
+
+
+        });
+    }
+</script>
+</body>
+</html>
